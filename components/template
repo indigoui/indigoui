@@ -1,0 +1,81 @@
+class [| shared.classPrefix |][| context.className |] extends HTMLElement {
+  static is = '[| shared.prefix |]-[| context.name |]';
+
+  [|? context.attrs |]
+    static observedAttributes = [| context.attrs |];
+  [|end|]
+
+  [|? context.includeEvent |]
+    #events = [];
+  [|end|]
+
+  [|? context.render |]
+    #shadow;
+  [|end|]
+
+  [|? context.includeOnChange |]
+    attributeChangedCallback(attr, oldValue, newValue) {
+      this.#onChange(attr, newValue, oldValue);
+    }
+  [|end|]
+
+  [|? context.includeOnInit |]
+    connectedCallback() {
+      this.#onInit();
+    }
+  [|end|]
+
+  constructor() {
+    super();
+
+    [|? context.render |]
+      this.#shadow = this.attachShadow({
+        mode: '[| shared.classShadowClosed ? 'closed' : 'open' |]'
+      });
+
+      this.#render();
+    [|end|]
+
+    [|? context.includeOnConstructor |]
+      this.#onConstructor();
+    [|end|]
+  }
+
+  [|? context.includeEvent || context.includeOnDestroy |]
+    disconnectedCallback() {
+      [|? context.includeEvent |]
+        for (let i = 0; i < this.#events.length; i++) {
+          this.#events[i].el.removeEventListener(this.#events[i].name, this.#events[i].fn);
+        }
+      [|end|]
+
+      [|? context.includeOnDestroy |]
+        this.#onDestroy();
+      [|end|]
+    }
+  [|end|]
+
+  [|? context.includeEmit |]
+    #emit(name, detail) {
+      const event = new CustomEvent(name, { detail });
+      this.dispatchEvent(event);
+    }
+  [|end|]
+
+  [|? context.includeEvent |]
+    #event(el, name, fn) {
+      this.#events.push({ el, fn, name });
+      el.addEventListener(name, fn);
+    }
+  [|end|]
+
+  [|? context.render |]
+    #render() {
+      [| context.render |]
+    }
+  [|end|]
+
+  [| content |]
+}
+
+customElements.define('[| shared.prefix |]-[| context.name |]', [| shared.classPrefix |][| context.className |]);
