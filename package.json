@@ -8,11 +8,13 @@
   "devDependencies": {
     "nodemon": "^2.0.20"
   },
-  "name": "@gohypertext/x",
+  "name": "x-components",
   "private": true,
   "scripts": {
-    "build": "node index.js",
-    "build:dev": "nodemon index.js -e css,html,js -i **/dist/** -w components/template -w components/**/* -w .env.js -w compile.js -w index.js"
+    "build": "node build.js",
+    "build:dev": "nodemon build.js -e css,html,js -i **/dist/** -w compiler/**/* -w components/template -w components/**/* -w .env.js -w build.js",
+    "sync:flag": "node sync-flag.js",
+    "sync:icon": "node sync-icon.js"
   },
   "license": "UNLICENSED",
   "type": "module",

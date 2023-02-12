@@ -1,5 +1,5 @@
 import fs from 'fs/promises';
-import compile from './compile.js';
+import compileComponent from './compiler/compile-component.js';
 
 await fs.mkdir('dist', { recursive: true });
 
@@ -10,11 +10,11 @@ for (let i = 0; i < components.length; i++) {
     continue;
   }
 
-  const compiled = await compile(components[i]);
+  console.log(`[compile] ${components[i]}`);
+
+  const compiled = await compileComponent(components[i]);
 
   await fs.writeFile(`dist/${components[i]}.js`, compiled, 'utf-8');
-
-  console.log(`[compile] ${components[i]}`);
 }
 
 const dist = await fs.readdir('dist');
