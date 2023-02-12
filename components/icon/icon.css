@@ -1,0 +1,16 @@
+:host {
+  display: flex;
+  height: [| shared.defaultSize |]px;
+  width: [| shared.defaultSize |]px;
+}
+
+:host svg {
+  display: flex;
+  fill: none;
+  height: 100%;
+  stroke: currentColor;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-width: [| shared.defaultStroke |]px;
+  width: 100%;
+}

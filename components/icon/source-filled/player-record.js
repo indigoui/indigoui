@@ -1,0 +1,1 @@
+const _0 = document.createElementNS('http://www.w3.org/2000/svg', 'path');_0.setAttribute('d', "M12 12m-7 0a7 7 0 1 0 14 0a7 7 0 1 0 -14 0");_0.setAttribute('fill', "currentColor");this.#shadow.children[1].appendChild(_0);

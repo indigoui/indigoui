@@ -1,0 +1,1 @@
+const _0 = document.createElementNS('http://www.w3.org/2000/svg', 'path');_0.setAttribute('d', "M7 5h6a3.5 3.5 0 0 1 0 7h-6z");this.#shadow.children[1].appendChild(_0);const _1 = document.createElementNS('http://www.w3.org/2000/svg', 'path');_1.setAttribute('d', "M13 12h1a3.5 3.5 0 0 1 0 7h-7v-7");this.#shadow.children[1].appendChild(_1);
